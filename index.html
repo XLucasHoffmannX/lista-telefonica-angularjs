@@ -19,6 +19,11 @@
                 { nome: "Teste", numero: "9999999" },
                 { nome: "Teste", numero: "9999999" },
             ]
+
+            $scope.adicionarContato= function (contato){
+                $scope.contatos.push(angular.copy(contato));
+                delete $scope.contato;
+            }
         });
     </script>
     <title>Lista Telefônica</title>
@@ -27,7 +32,7 @@
 <body ng-controller="listaTelefonicaController">
     <div class="jumbotron d-flex flex-column align-items-center justify-content-center mt-4">
         <div class="w-50">
-            <h4 ng-bind="app"></h4>
+            <h4 class="mb-4" ng-bind="app"></h4>
             <table class="table table-striped">
                 <tr>
                     <th>Nome</th>
@@ -38,6 +43,12 @@
                     <td>{{contato.numero}}</td>
                 </tr>
             </table>
+            <hr>
+            <input type="text" class="form-control mb-4" ng-model="contato.nome" placeholder="Nome">
+            <input type="text" class="form-control" ng-model="contato.numero" placeholder="Telefone">
+
+            <button class="btn btn-primary btn-block mt-4" ng-click="adicionarContato(contato)" ng-disabled="!contato.nome || !contato.nome">Adicionar contato</button>
+
         </div>
     </div>
 </body>
